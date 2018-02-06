@@ -71,3 +71,5 @@ set_target_properties(g3dlib
     PROPERTIES
       FOLDER
         "dep")
+
+cotire(g3dlib)

@@ -253,6 +253,9 @@ int WINAPI WinMain(HINSTANCE hInst, HINSTANCE hPrev, LPSTR szCmdLine, int sw) {\
 #ifdef __GNUC__
 
 #    include <stdint.h>
+#    if( MUSL_LIBC == 1 )
+#        include <sys/time.h>
+#    endif
 
 #   if __STDC_VERSION__ < 199901
 #        define restrict __restrict__

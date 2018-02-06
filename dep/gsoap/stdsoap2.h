@@ -572,7 +572,9 @@ extern intmax_t __strtoull(const char*, char**, int);
 #  define HAVE_SYS_TIMEB_H
 #  define HAVE_FTIME
 #  define HAVE_RAND_R
-#  define HAVE_GETHOSTBYNAME_R
+#  if( MUSL_LIBC == 0 )
+#    define HAVE_GETHOSTBYNAME_R
+#  endif
 #  define HAVE_GMTIME_R
 #  define HAVE_ASCTIME_R
 #  define HAVE_LOCALTIME_R
@@ -947,7 +949,7 @@ extern "C" {
 # endif
 #elif defined(SOCKLEN_T)
 # define SOAP_SOCKLEN_T SOCKLEN_T
-#elif defined(__socklen_t_defined) || defined(_SOCKLEN_T) || defined(CYGWIN) || defined(FREEBSD) || defined(__FreeBSD__) || defined(OPENBSD) || defined(__QNX__) || defined(QNX) || defined(OS390) || defined(__ANDROID__) || defined(_XOPEN_SOURCE)
+#elif defined(__socklen_t_defined) || defined(_SOCKLEN_T) || defined(CYGWIN) || defined(FREEBSD) || defined(__FreeBSD__) || defined(OPENBSD) || defined(__QNX__) || defined(QNX) || defined(OS390) || defined(__ANDROID__) || defined(_XOPEN_SOURCE) || ( MUSL_LIBC == 1 )
 # define SOAP_SOCKLEN_T socklen_t
 #elif defined(IRIX) || defined(WIN32) || defined(__APPLE__) || defined(SUN_OS) || defined(OPENSERVER) || defined(TRU64) || defined(VXWORKS)
 # define SOAP_SOCKLEN_T int

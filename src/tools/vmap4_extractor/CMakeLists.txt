@@ -33,3 +33,5 @@ if(UNIX)
 elseif(WIN32)
   install(TARGETS vmap4extractor DESTINATION "${CMAKE_INSTALL_PREFIX}")
 endif()
+
+cotire(vmap4extractor)

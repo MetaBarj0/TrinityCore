@@ -9,6 +9,10 @@
 #include <stdio.h>
 #include <errno.h>
 
+#if( MUSL_LIBC == 1 )
+# include <sys/select.h>
+#endif
+
 #ifdef EFSW_INOTIFY_NOSYS
 #include <efsw/inotify-nosys.h>
 #else

@@ -59,4 +59,12 @@ option(BUILD_TESTING    "Build test suite" 0)
 
 if(UNIX)
   option(USE_LD_GOLD    "Use GNU gold linker"                                        0)
+
+# musl-libc support (partial)
+option(WITH_MUSL_LIBC   "Link against the musl-libc, this will disable jemalloc linking" 0)
+if (WITH_MUSL_LIBC)
+  add_definitions( -DMUSL_LIBC=1 )
+  # musl-libc does not officially support custom malloc implementations, if
+  # jemalloc is used, worldserver crashes at startup
+  set(NOJEM ON)
 endif()

@@ -19617,8 +19617,8 @@ soap_strerror(struct soap *soap)
   {
 #ifndef WIN32
 # ifdef HAVE_STRERROR_R
-#  if defined(_GNU_SOURCE) && !defined(__ANDROID__)
-    return strerror_r(err, soap->msgbuf, sizeof(soap->msgbuf)); /* GNU-specific */
+#  if defined(_GNU_SOURCE) && !defined(__ANDROID__) && ( MUSL_LIBC == 1  )
+    strerror_r(err, soap->msgbuf, sizeof(soap->msgbuf)); /* GNU-specific */
 #  else
     strerror_r(err, soap->msgbuf, sizeof(soap->msgbuf)); /* XSI-compliant */
 #  endif

@@ -61,6 +61,10 @@ void SetProcessPriority(std::string const& logChannel, uint32 affinity, bool hig
 
 #elif defined(__linux__) // Linux
 
+#if( MUSL_LIBC == 1 )
+    using __cpu_mask = unsigned long;
+#endif
+
     if (affinity > 0)
     {
         cpu_set_t mask;

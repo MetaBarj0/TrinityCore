@@ -68,12 +68,16 @@
 /* #undef JEMALLOC_OS_UNFAIR_LOCK */
 
 /* Defined if syscall(2) is usable. */
-#define JEMALLOC_USE_SYSCALL 
+#if( MUSL_LIBC == 0 )
+#  define JEMALLOC_USE_SYSCALL
+#endif
 
 /*
  * Defined if secure_getenv(3) is available.
  */
-#define JEMALLOC_HAVE_SECURE_GETENV 
+#if( MUSL_LIBC == 0 )
+#  define JEMALLOC_HAVE_SECURE_GETENV
+#endif
 
 /*
  * Defined if issetugid(2) is available.
@@ -319,10 +323,14 @@
 #define LG_SIZEOF_INTMAX_T 3
 
 /* glibc malloc hooks (__malloc_hook, __realloc_hook, __free_hook). */
-#define JEMALLOC_GLIBC_MALLOC_HOOK 
+#if( MUSL_LIBC == 0 )
+#  define JEMALLOC_GLIBC_MALLOC_HOOK
+#endif
 
 /* glibc memalign hook. */
-#define JEMALLOC_GLIBC_MEMALIGN_HOOK 
+#if( MUSL_LIBC == 0 )
+#  define JEMALLOC_GLIBC_MEMALIGN_HOOK
+#endif
 
 /* pthread support */
 #define JEMALLOC_HAVE_PTHREAD 
